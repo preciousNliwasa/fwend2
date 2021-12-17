@@ -33,11 +33,11 @@ from skimage.transform import  resize
 def reply_whatsapp():
 
     try:
-        num_media = request.values.get("NumMedia")
+        num_media = int(request.values.get("NumMedia"))
     except (ValueError, TypeError):
         return "Invalid request: invalid or missing NumMedia parameter", 400
     response = MessagingResponse()
-    if not int(num_media):
+    if not num_media:
         msg = response.message("Send us an image!")
     else:
         model = pickle.load(open('tensor.pkl','rb'))
