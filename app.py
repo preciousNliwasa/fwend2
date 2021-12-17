@@ -3,7 +3,6 @@ from twilio.twiml.messaging_response import MessagingResponse
 import requests
 import pickle
 import numpy as np
-import keras
 
 app = Flask(__name__)                    
 
@@ -41,11 +40,7 @@ def reply_whatsapp():
     if not int(num_media):
         msg = response.message("Send us an image!")
     else:
-        model = pickle.load(open('tensor.pkl','rb'))
-        
-        iim2 = resize(num_media,(32,32,3))
-        
-        msg = response.message(str(model.predict(np.array([iim2,]))))
+        msg = response.message('Thank you for sending an image')
         msg.media(GOOD_BOY_URL)
     return str(response)
  
