@@ -3,7 +3,6 @@ from twilio.twiml.messaging_response import MessagingResponse
 import requests
 import pickle
 import numpy as np
-from tensorflow import keras
 import keras
 
 app = Flask(__name__)                    
