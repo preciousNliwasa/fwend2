@@ -1,14 +1,8 @@
 from flask import Flask,request
 from twilio.twiml.messaging_response import MessagingResponse
 import requests
-from chatterbot import ChatBot
-from chatterbot.trainers import ChatterBotCorpusTrainer
 
-chatbott = ChatBot('Fwend')
 app = Flask(__name__)                    
-
-trainer = ChatterBotCorpusTrainer(chatbott)
-trainer.train('chatterbot.corpus.english')
 
 @app.route('/')
 def home():
