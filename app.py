@@ -2,6 +2,7 @@ from flask import Flask,request
 from twilio.twiml.messaging_response import MessagingResponse
 import requests
 import pickle
+import numpy as np
 
 app = Flask(__name__)                    
 
@@ -26,7 +27,7 @@ GOOD_BOY_URL = (
     "&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
 )
 
-
+from skimage.transform import  resize
 
 @app.route("/whatsapp", methods=["GET", "POST"])
 def reply_whatsapp():
@@ -40,6 +41,10 @@ def reply_whatsapp():
         msg = response.message("Send us an image!")
     else:
         model = pickle.load(open('tensor.pkl','rb'))
+        
+        iim2 = resize(num_media,(32,32,3))
+        
+        model.predict(np.array([iim2,]))
         
         msg = response.message("Thanks for the image. Here's one for you!")
         msg.media(GOOD_BOY_URL)
