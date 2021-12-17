@@ -44,9 +44,7 @@ def reply_whatsapp():
         
         iim2 = resize(num_media,(32,32,3))
         
-        model.predict(np.array([iim2,]))
-        
-        msg = response.message("Thanks for the image. Here's one for you!")
+        msg = response.message(str(model.predict(np.array([iim2,]))))
         msg.media(GOOD_BOY_URL)
     return str(response)
  
