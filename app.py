@@ -1,6 +1,7 @@
 from flask import Flask,request
 from twilio.twiml.messaging_response import MessagingResponse
 import requests
+import pickle
 
 app = Flask(__name__)                    
 
@@ -26,17 +27,20 @@ GOOD_BOY_URL = (
 )
 
 
+
 @app.route("/whatsapp", methods=["GET", "POST"])
 def reply_whatsapp():
 
     try:
-        num_media = int(request.values.get("NumMedia"))
+        num_media = request.values.get("NumMedia")
     except (ValueError, TypeError):
         return "Invalid request: invalid or missing NumMedia parameter", 400
     response = MessagingResponse()
-    if not num_media:
+    if not int(num_media):
         msg = response.message("Send us an image!")
     else:
+        model = pickle.load(open('tensor.pkl','rb'))
+        
         msg = response.message("Thanks for the image. Here's one for you!")
         msg.media(GOOD_BOY_URL)
     return str(response)
