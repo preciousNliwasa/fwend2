@@ -38,9 +38,9 @@ def reply_whatsapp():
         return "Invalid request: invalid or missing NumMedia parameter", 400
     response = MessagingResponse()
     if not int(num_media):
-        msg = response.message("Send us an image!")
+        msg = response.message("Send nliwasa an image!")
     else:
-        msg = response.message('Thank you for sending an image')
+        msg = response.message('Thank you for sending nliwasa an image')
         msg.media(GOOD_BOY_URL)
     return str(response)
  
