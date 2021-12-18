@@ -10,6 +10,7 @@ app = Flask(__name__)
 def home():
   return ('hello')
 
+## this function cant work , some variables were removed
 @app.route('/chat',methods = ['POST'])
 def chat():
   inc = request.values.get('Body','').lower()
