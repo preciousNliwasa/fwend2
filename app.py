@@ -25,6 +25,7 @@ def chat():
 
 bird = "https://49t059.deta.dev/stream/birdtensor.jpg"
 zuki = "https://49t059.deta.dev/stream/zuki.jpg"
+gh = "https://49t059.deta.dev/stream/gh.jpg"
 
 from skimage.transform import  resize
 
@@ -41,15 +42,15 @@ def reply_whatsapp():
         if inc == 'bird':
           msg.media(bird)
           
-        elif inc == 'zuki':
-          msg.media(zuki)
+        elif inc == 'chanco':
+          msg.media(gh)
           
         else:
           msg = response.message("Send nliwasa an image or make a request!")
           
     else:
         msg = response.message('Thank you for sending nliwasa an image')
-        msg.media(GOOD_BOY_URL)
+        msg.media(zuki)
     return str(response)
  
 if __name__ == '__main__':
