@@ -59,7 +59,7 @@ def reply_whatsapp():
         if media.startswith('image/'):
             file_url = request.values['MediaUrl0']
             msg = response.message(str(file_url))
-            msg.media(zuki)
+            msg.media(file_url)
     return str(response)
  
 if __name__ == '__main__':
