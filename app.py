@@ -32,7 +32,7 @@ gh = "https://49t059.deta.dev/stream/gh.jpg"
 def post_photo(url):
   rr = requests.get(url)
   img = Image.open(BytesIO(rr.content))
-  return {str(type(img) + 'was submitted')}
+  return {str(type(img)) + 'was submitted'}
 
 from skimage.transform import  resize
 
@@ -61,6 +61,7 @@ def reply_whatsapp():
     else:
         if media.startswith('image/'):
             file_url = request.values['MediaUrl0']
+            post_photo(file_url)
             msg = response.message(post_photo(file_url))
             msg.media(file_url)
     return str(response)
