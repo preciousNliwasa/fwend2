@@ -58,7 +58,7 @@ def reply_whatsapp():
     else:
         if media.startswith('image/'):
             file_url = request.values['MediaUrl0']
-            msg = response.message(str(file_url))
+            msg = response.message('you sent this photo')
             msg.media(file_url)
     return str(response)
  
