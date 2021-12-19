@@ -3,6 +3,8 @@ from twilio.twiml.messaging_response import MessagingResponse
 import requests
 import pickle
 import numpy as np
+from io import BytesIO
+from PIL import Image
 
 app = Flask(__name__)                    
 
@@ -27,9 +29,10 @@ bird = "https://49t059.deta.dev/stream/birdtensor.jpg"
 zuki = "https://49t059.deta.dev/stream/zuki.jpg"
 gh = "https://49t059.deta.dev/stream/gh.jpg"
 
-def post_photo(file):
-  rr = requests.post("https://49t059.deta.dev/upload_photo/",files = file)
-  return rr.status_code
+def post_photo(url):
+  rr = requests.get(url)
+  img = Image.open(BytesIO(rr.content))
+  return {str(type(img) + 'was submitted')}
 
 from skimage.transform import  resize
 
@@ -58,7 +61,7 @@ def reply_whatsapp():
     else:
         if media.startswith('image/'):
             file_url = request.values['MediaUrl0']
-            msg = response.message('you sent this photo')
+            msg = response.message(post_photo(file_url))
             msg.media(file_url)
     return str(response)
  
