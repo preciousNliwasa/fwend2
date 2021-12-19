@@ -23,7 +23,7 @@ def chat():
   return str(resp)
 
 
-GOOD_BOY_URL = "https://49t059.deta.dev/stream/birdtensor.jpg"
+GOOD_BOY_URL = "https://49t059.deta.dev/stream/"
 
 from skimage.transform import  resize
 
@@ -36,6 +36,10 @@ def reply_whatsapp():
         return "Invalid request: invalid or missing NumMedia parameter", 400
     response = MessagingResponse()
     if not int(num_media):
+        inc = request.values.get("Body","").lower()
+        if inc in requests.get("https://49t059.deta.dev/get_photos_list").text:
+          msg.media(GOOD_BOY_URL + inc)
+          
         msg = response.message("Send nliwasa an image!")
     else:
         msg = response.message('Thank you for sending nliwasa an image')
