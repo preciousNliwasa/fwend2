@@ -23,10 +23,7 @@ def chat():
   return str(resp)
 
 
-GOOD_BOY_URL = (
-    "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-1.2.1"
-    "&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-)
+GOOD_BOY_URL = "https://49t059.deta.dev/stream/birdtensor.jpg"
 
 from skimage.transform import  resize
 
