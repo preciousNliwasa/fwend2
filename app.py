@@ -34,15 +34,17 @@ def reply_whatsapp():
 
     try:
         num_media = request.values.get("NumMedia")
+        inc = request.values.get("Body","").lower()
     except (ValueError, TypeError):
         return "Invalid request: invalid or missing NumMedia parameter", 400
     response = MessagingResponse()
     if not int(num_media):
-        inc = request.values.get("Body","").lower()
         if inc == 'bird':
+          msg = response.message('Here is the bird')
           msg.media(bird)
           
         elif inc == 'chanco':
+          msg = response.message('Here is chanco')
           msg.media(gh)
           
         else:
