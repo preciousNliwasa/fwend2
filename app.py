@@ -23,7 +23,8 @@ def chat():
   return str(resp)
 
 
-GOOD_BOY_URL = "https://49t059.deta.dev/stream/"
+bird = "https://49t059.deta.dev/stream/birdtensor.jpg"
+zuki = "https://49t059.deta.dev/stream/zuki.jpg"
 
 from skimage.transform import  resize
 
@@ -37,10 +38,15 @@ def reply_whatsapp():
     response = MessagingResponse()
     if not int(num_media):
         inc = request.values.get("Body","").lower()
-        if inc in requests.get("https://49t059.deta.dev/get_photos_list").text:
-          msg.media(GOOD_BOY_URL + inc)
+        if inc == 'bird':
+          msg.media(bird)
           
-        msg = response.message("Send nliwasa an image!")
+        elif inc == 'zuki':
+          msg.media(zuki)
+          
+        else:
+          msg = response.message("Send nliwasa an image or make a request!")
+          
     else:
         msg = response.message('Thank you for sending nliwasa an image')
         msg.media(GOOD_BOY_URL)
