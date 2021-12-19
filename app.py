@@ -27,6 +27,10 @@ bird = "https://49t059.deta.dev/stream/birdtensor.jpg"
 zuki = "https://49t059.deta.dev/stream/zuki.jpg"
 gh = "https://49t059.deta.dev/stream/gh.jpg"
 
+def post_photo(file):
+  rr = requests.post("https://49t059.deta.dev/upload_photo/",files = file)
+  return rr.status_code
+
 from skimage.transform import  resize
 
 @app.route("/whatsapp", methods=["GET", "POST"])
@@ -51,7 +55,8 @@ def reply_whatsapp():
           msg = response.message("Send nliwasa an image or make a request!")
           
     else:
-        msg = response.message('Thank you for sending nliwasa an image')
+        mssc = post_photo(num_media)
+        msg = response.message(str(mssc))
         msg.media(zuki)
     return str(response)
  
