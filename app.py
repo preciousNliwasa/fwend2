@@ -39,6 +39,7 @@ def reply_whatsapp():
     try:
         num_media = request.values.get("NumMedia")
         inc = request.values.get("Body","").lower()
+        media = request.values.get('MediaContentType0', '')
     except (ValueError, TypeError):
         return "Invalid request: invalid or missing NumMedia parameter", 400
     response = MessagingResponse()
@@ -55,9 +56,11 @@ def reply_whatsapp():
           msg = response.message("Send nliwasa an image or make a request!")
           
     else:
-        mssc = post_photo(num_media)
-        msg = response.message(str(mssc))
-        msg.media(zuki)
+        if media.startswith('image/'):
+            file_url = request.values['MediaUrl0']
+            mssc = post_photo(file_url)
+            msg = response.message(str(mssc))
+            msg.media(zuki)
     return str(response)
  
 if __name__ == '__main__':
