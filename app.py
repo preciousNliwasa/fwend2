@@ -63,6 +63,15 @@ def reply_whatsapp():
             file_url = request.values['MediaUrl0']
             msg = response.message(post_photo(file_url))
             msg.media(file_url)
+            
+        elif media.startswith('audio/'):
+            file_url = request.values['MediaUrl0']
+            msg = response.message('you sent us this audio')
+            msg.media(file_url)
+            
+        else:
+            msg = response.message('we dont understand what you have given')
+          
     return str(response)
  
 if __name__ == '__main__':
