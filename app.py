@@ -64,9 +64,9 @@ def reply_whatsapp():
             msg = response.message(post_photo(file_url))
             msg.media(file_url)
             
-        elif media.startswith('audio/'):
+        elif media.startswith('video/'):
             file_url = request.values['MediaUrl0']
-            msg = response.message('you sent us this audio')
+            msg = response.message('you sent us this video')
             msg.media(file_url)
             
         else:
