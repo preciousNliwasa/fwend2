@@ -62,7 +62,7 @@ def reply_whatsapp():
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message('------PLANT DISEASES MENU---------- \n ---------------------------------------------- \n' + str(df[['Code','Disease']]) + '\n ' + '------------------------------------------------ \n DSM -- to diseases Menu')
           
-        elif inc in str(dff.Code.values):
+        elif 'dd' in inc:
           pld_D = 'jj'
           msg = response.message(pld_D)
         
