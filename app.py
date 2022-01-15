@@ -48,16 +48,16 @@ def reply_whatsapp():
         return "Invalid request: invalid or missing NumMedia parameter", 400
     response = MessagingResponse()
     if not int(num_media):
-        if "hello" in inc:
-          msg = response.message("knwd -- know disease,knwdp -- know plant,knwa -- know animal")
+        if (("hello") | ('hi')) in inc:
+          msg = response.message("hello \n  TYPE \n knwd -- know disease \n knwdp -- know plant \n knwa -- know animal")
         elif 'knwd' in inc:
-          msg = response.message("PLT - PLANT,ANM - ANIMAL")
+          msg = response.message("TYPE \n PLT - PLANT \n ANM - ANIMAL")
     
         elif 'plt' in inc:
           msg = response.message('api get resp')
           
         elif inc in 'api get resp':
-          msg = response.message('particularleaf  disease')
+          msg = response.message('particular leaf  disease')
         
         elif 'anm' in inc:
           output = 'api get resp anm'
