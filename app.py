@@ -51,13 +51,13 @@ def reply_whatsapp():
     if not int(num_media):
         if ("hello" in inc) | ('hi' in inc) | ('mn' in inc):
           msg = response.message("----------------MAIN MENU------------------\n  Use Codes given to choose an option\n----------------------------------------------------- \n KNWD -- know about diseases \n KNWP -- know about plants \n KNWA -- know about animals \n KNWS -- know about shops \n KNWM -- know about manure \n KNWMA -- know about markets")
-        elif 'knwd' in inc:
+        elif ('knwd' in inc) | ('dsm' in inc):
           msg = response.message("----------DISEASE MENU------------ \n --------------------------------------------\n PLT -- plant diseases \n ANM -- animal diseases \n MN -- to main menu")
     
         elif 'plt' in inc:
           output = requests.get(url = "https://1atqmr.deta.dev/get_all_plant_diseases/")
           df = pd.DataFrame(output.json()['_items'])
-          msg = response.message('----------------PLANT DISEASES MENU-----------------\n --------------------------------------------------------\n' + str(df[['Code','Disease']]) + '\n ' + '-----------------------------------------------------------------\n DSM -- to diseases Menu')
+          msg = response.message('------PLANT DISEASES MENU---------- \n ---------------------------------------------- \n' + str(df[['Code','Disease']]) + '\n ' + '-----------------------------------------------------------------\n DSM -- to diseases Menu')
           
         elif inc in 'api get resp':
           msg = response.message('particular leaf  disease')
