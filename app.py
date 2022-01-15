@@ -51,7 +51,7 @@ def reply_whatsapp():
         if ("hello" in inc) | ('hi' in inc):
           msg = response.message("----------------MAIN MENU------------------\n  Use Codes given to choose an option\n----------------------------------------------------- \n KNWD -- know about diseases \n KNWP -- know about plants \n KNWA -- know about animals \n KNWS -- know about shops \n KNWM -- know about manure \n KNWMA -- know about markets")
         elif 'knwd' in inc:
-          msg = response.message("----------DISEASE MENU------------ \n ---------------------------------------------------\n PLT -- PLANT \n ANM -- ANIMAL")
+          msg = response.message("----------DISEASE MENU------------ \n --------------------------------------------\n PLT -- plant diseases \n ANM -- animal diseases")
     
         elif 'plt' in inc:
           msg = response.message('api get resp')
