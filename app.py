@@ -63,7 +63,7 @@ def reply_whatsapp():
           msg = response.message('------PLANT DISEASES MENU---------- \n ---------------------------------------------- \n' + str(df[['Code','Disease']]) + '\n ' + '------------------------------------------------ \n DSM -- to diseases Menu')
           
         elif np.any(dff.Code.values in inc):
-          pld_D = dff.loc[dff['Code'].str.contains(str(inc)),'Description']
+          pld_D = dff.loc[dff['Code'].str.contains(inc),'Description']
           msg = response.message(str(pld_D))
         
         elif 'anm' in inc:
