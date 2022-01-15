@@ -50,16 +50,16 @@ def reply_whatsapp():
     if not int(num_media):
         if "hello" in inc:
           msg = response.message("knwd -- know disease,knwdp -- know plant,knwa -- know animal")
-        elif 'KNWD' in inc:
+        elif 'knwd' in inc:
           msg = response.message("PLT - PLANT,ANM - ANIMAL")
     
-        elif 'PLT' in inc:
+        elif 'plt' in inc:
           msg = response.message('api get resp')
           
         elif inc in 'api get resp':
           msg = response.message('particularleaf  disease')
         
-        elif 'ANM' in inc:
+        elif 'anm' in inc:
           output = 'api get resp anm'
           msg = response.message(output)
         elif inc in 'api get resp anm':
