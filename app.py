@@ -57,7 +57,7 @@ def reply_whatsapp():
         elif 'plt' in inc:
           output = requests.get(url = "https://1atqmr.deta.dev/get_all_plant_diseases/")
           df = pd.DataFrame(output.json()['_items'])
-          msg = response.message(str(df[['Code','Disease']]))
+          msg = response.message('----------------PLANT DISEASES MENU-----------------\n --------------------------------------------------------\n',str(df[['Code','Disease']]),'-----------------------------------------------------------------\n DSM -- to diseases Menu')
           
         elif inc in 'api get resp':
           msg = response.message('particular leaf  disease')
