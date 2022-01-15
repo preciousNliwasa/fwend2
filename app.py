@@ -52,12 +52,29 @@ def reply_whatsapp():
           msg = response.message(''' knwd -- know disease
                                        knwdp -- know plant
                                        knwa -- know animal''')
-        elif 'knwd' in inc:
-          url_data = requests.get(know_api,params = {request : 'knwd'})
-          msg = response.message(url_data.text)
-            
+        elif 'KNWD' in rq:
+          output = '''PLT - PLANT
+                    ANM - ANIMAL'''
+          msg = response.message(output)
+    
+        elif 'PLT' in rq:
+          output = ['api get resp']
+          msg = response.message(output)
+        elif rq in ['api get resp']:
+          output = ['particular leaf disease']
+          msg = response.message(output)
+        
+        elif 'ANM' in rq:
+          output = ['api get resp anm']
+          msg = response.message(output)
+        elif rq in ['api get resp anm']:
+          output = ['particular animal disaese']
+          msg = response.message(output)
+        
         else:
-          msg = 'waiting'
+        output = 'waiting'
+        msg = response.message(output)
+    
           
     else:
         if media.startswith('image/'):
