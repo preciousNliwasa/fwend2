@@ -49,8 +49,8 @@ def reply_whatsapp():
         return "Invalid request: invalid or missing NumMedia parameter", 400
     response = MessagingResponse()
     if not int(num_media):
-      output = requests.get(url = "https://1atqmr.deta.dev/get_all_plant_diseases/")
-      df = pd.DataFrame(output.json()['_items'])
+      outputt = requests.get(url = "https://1atqmr.deta.dev/get_all_plant_diseases/")
+      dff = pd.DataFrame(outputt.json()['_items'])
       
         if ("hello" in inc) | ('hi' in inc) | ('mn' in inc):
           msg = response.message("----------------MAIN MENU------------------\n  Use Codes given to choose an option\n----------------------------------------------------- \n KNWD -- know about diseases \n KNWP -- know about plants \n KNWA -- know about animals \n KNWS -- know about shops \n KNWM -- know about manure \n KNWMA -- know about markets")
@@ -62,9 +62,9 @@ def reply_whatsapp():
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message('------PLANT DISEASES MENU---------- \n ---------------------------------------------- \n' + str(df[['Code','Disease']]) + '\n ' + '------------------------------------------------ \n DSM -- to diseases Menu')
           
-        elif inc in df.Code.values:
-          pld_D = df.loc[df['Code'].str.contains(inc),'Description']
-          msg = response.message(pld_D)
+        elif inc in dff.Code.values:
+          pld_D = dff.loc[dff['Code'].str.contains(str(inc)),'Description']
+          msg = response.message(str(pld_D))
         
         elif 'anm' in inc:
           output = 'api get resp anm'
