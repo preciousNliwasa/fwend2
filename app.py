@@ -49,9 +49,9 @@ def reply_whatsapp():
     response = MessagingResponse()
     if not int(num_media):
         if ("hello" in inc) | ('hi' in inc):
-          msg = response.message("hello \n  TYPE \n knwd -- know disease \n knwdp -- know plant \n knwa -- know animal")
+          msg = response.message("-----MAIN MENU------\n  Use Codes given to choose an option \n knwd -- know disease \n knwdp -- know plant \n knwa -- know animal")
         elif 'knwd' in inc:
-          msg = response.message("TYPE \n PLT - PLANT \n ANM - ANIMAL")
+          msg = response.message("---DISEASE---- \n PLT - PLANT \n ANM - ANIMAL")
     
         elif 'plt' in inc:
           msg = response.message('api get resp')
