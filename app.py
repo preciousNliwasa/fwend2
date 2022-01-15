@@ -5,6 +5,7 @@ import pickle
 import numpy as np
 from io import BytesIO
 from PIL import Image
+import pandas as pd
 
 app = Flask(__name__)                    
 
@@ -55,7 +56,8 @@ def reply_whatsapp():
     
         elif 'plt' in inc:
           output = requests.get(url = "https://1atqmr.deta.dev/get_all_plant_diseases/")
-          msg = response.message(output.text)
+          df = pd.DataFrame(output.json()['_items'])
+          msg = response.message(str(df[['Code','Disease']]))
           
         elif inc in 'api get resp':
           msg = response.message('particular leaf  disease')
