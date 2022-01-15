@@ -48,6 +48,10 @@ def reply_whatsapp():
     except (ValueError, TypeError):
         return "Invalid request: invalid or missing NumMedia parameter", 400
     response = MessagingResponse()
+    
+    outputt = requests.get(url = "https://1atqmr.deta.dev/get_all_plant_diseases/")
+    dff = pd.DataFrame(outputt.json()['_items'])
+    
     if not int(num_media):
       
         if ("hello" in inc) | ('hi' in inc) | ('mn' in inc):
@@ -60,7 +64,7 @@ def reply_whatsapp():
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message('------PLANT DISEASES MENU---------- \n ---------------------------------------------- \n' + str(df[['Code','Disease']]) + '\n ' + '------------------------------------------------ \n DSM -- to diseases Menu')
           
-        elif 'dd' in inc:
+        elif np.any(dff.Code.values == inc):
           pld_D = 'jj'
           msg = response.message(pld_D)
         
