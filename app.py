@@ -28,6 +28,7 @@ def chat():
 bird = "https://49t059.deta.dev/stream/birdtensor.jpg"
 zuki = "https://49t059.deta.dev/stream/zuki.jpg"
 gh = "https://49t059.deta.dev/stream/gh.jpg"
+know_api= "https://r1lp8q.deta.dev/know/"
 
 def post_photo(url):
   rr = requests.get(url)
@@ -47,16 +48,8 @@ def reply_whatsapp():
         return "Invalid request: invalid or missing NumMedia parameter", 400
     response = MessagingResponse()
     if not int(num_media):
-        if 'bird' in inc:
-          msg = response.message('Here is the bird')
-          msg.media(bird)
-          
-        elif 'chanco' in inc:
-          msg = response.message('Here is chanco')
-          msg.media(gh)
-          
-        else:
-          msg = response.message("Send nliwasa an image or make a request!")
+        url_data = requests.get(know_api,params = {request : inc})
+        msg = response.message(url_data.text)
           
     else:
         if media.startswith('image/'):
