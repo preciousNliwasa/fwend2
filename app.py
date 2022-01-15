@@ -49,15 +49,15 @@ def reply_whatsapp():
     response = MessagingResponse()
     if not int(num_media):
         if (("hello") | ("hi")) in inc:
-            msg = response.message(''' knwd -- know disease
+          msg = response.message(''' knwd -- know disease
                                        knwdp -- know plant
                                        knwa -- know animal''')
         elif 'knwd' in inc:
-            url_data = requests.get(know_api,params = {request : 'knwd'})
-            msg = response.message(url_data.text)
+          url_data = requests.get(know_api,params = {request : 'knwd'})
+          msg = response.message(url_data.text)
             
         else:
-            msg = 'waiting'
+          msg = 'waiting'
           
     else:
         if media.startswith('image/'):
