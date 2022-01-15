@@ -52,7 +52,7 @@ def reply_whatsapp():
         if ("hello" in inc) | ('hi' in inc) | ('mn' in inc):
           msg = response.message("----------------MAIN MENU------------------\n  Use Codes given to choose an option\n----------------------------------------------------- \n KNWD -- know about diseases \n KNWP -- know about plants \n KNWA -- know about animals \n KNWS -- know about shops \n KNWM -- know about manure \n KNWMA -- know about markets")
         elif ('knwd' in inc) | ('dsm' in inc):
-          msg = response.message("----------DISEASE MENU------------ \n --------------------------------------------\n PLT -- plant diseases \n ANM -- animal diseases \n MN -- to main menu")
+          msg = response.message("----------DISEASE MENU------------ \n --------------------------------------------\n PLT -- plant diseases \n ANM -- animal diseases \n ------------------------------------------------ \n MN -- to main menu")
     
         elif 'plt' in inc:
           output = requests.get(url = "https://1atqmr.deta.dev/get_all_plant_diseases/")
