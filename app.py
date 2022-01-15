@@ -52,22 +52,22 @@ def reply_whatsapp():
           msg = response.message(''' knwd -- know disease
                                        knwdp -- know plant
                                        knwa -- know animal''')
-        elif 'KNWD' in rq:
+        elif 'KNWD' in inc:
           output = '''PLT - PLANT
                     ANM - ANIMAL'''
           msg = response.message(output)
     
-        elif 'PLT' in rq:
+        elif 'PLT' in inc:
           output = ['api get resp']
           msg = response.message(output)
-        elif rq in ['api get resp']:
+        elif inc in ['api get resp']:
           output = ['particular leaf disease']
           msg = response.message(output)
         
-        elif 'ANM' in rq:
+        elif 'ANM' in inc:
           output = ['api get resp anm']
           msg = response.message(output)
-        elif rq in ['api get resp anm']:
+        elif inc in ['api get resp anm']:
           output = ['particular animal disaese']
           msg = response.message(output)
         
