@@ -48,7 +48,7 @@ def reply_whatsapp():
         return "Invalid request: invalid or missing NumMedia parameter", 400
     response = MessagingResponse()
     if not int(num_media):
-        url_data = requests.get(know_api,params = {request : inc})
+        url_data = requests.get(know_api,params = {request : str(inc)})
         msg = response.message(url_data.text)
           
     else:
