@@ -62,8 +62,9 @@ def reply_whatsapp():
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message('------PLANT DISEASES MENU---------- \n ---------------------------------------------- \n' + str(df[['Code','Disease']]) + '\n ' + '------------------------------------------------ \n DSM -- to diseases Menu')
           
-        elif inc in 'api get resp':
-          msg = response.message('particular leaf  disease')
+        elif inc in df.Code.values:
+          pld_D = df.loc[df['Code'].str.contains(inc),'Description']
+          msg = response.message(pld_D)
         
         elif 'anm' in inc:
           output = 'api get resp anm'
