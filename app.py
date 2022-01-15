@@ -54,7 +54,8 @@ def reply_whatsapp():
           msg = response.message("----------DISEASE MENU------------ \n --------------------------------------------\n PLT -- plant diseases \n ANM -- animal diseases \n MN -- to main menu")
     
         elif 'plt' in inc:
-          msg = response.message('api get resp')
+          output = requests.get(url = "https://1atqmr.deta.dev/get_all_plant_diseases/")
+          msg = response.message(output.text)
           
         elif inc in 'api get resp':
           msg = response.message('particular leaf  disease')
