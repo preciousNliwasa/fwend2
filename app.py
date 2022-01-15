@@ -49,7 +49,7 @@ def reply_whatsapp():
     response = MessagingResponse()
     if not int(num_media):
         if ("hello" in inc) | ('hi' in inc):
-          msg = response.message("-----MAIN MENU------\n  Use Codes given to choose an option \n knwd -- know disease \n knwdp -- know plant \n knwa -- know animal")
+          msg = response.message("------------MAIN MENU------------\n  Use Codes given to choose an option\n--------------------------------- \n KNWD -- know disease \n KNWP -- know plant \n KNWA -- know animal \n KNWS -- know shops \n KNWM know manure \n KNWMA know markets")
         elif 'knwd' in inc:
           msg = response.message("---DISEASE---- \n PLT - PLANT \n ANM - ANIMAL")
     
