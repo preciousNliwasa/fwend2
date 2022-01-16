@@ -63,10 +63,10 @@ def reply_whatsapp():
     if not int(num_media):
       
         if ('hello' in inc) | ('hi' in inc) | ('lange' in inc) :
-          msg = response.message("----------------LANGUAGE-------------------- \n Use Codes given to choose an option \n ---------------------------------------------------- \n ENG -- english \n CHW -- chichewa \n --------------------------------------------------------------")
+          msg = response.message("----------------LANGUAGE-------------------- \n Use Codes given to choose an option \n ---------------------------------------------------- \n ENG -- english \n CHW -- chichewa \n ------------------------------------------------------")
         
         elif ('langc' in inc):
-           msg = response.message("----------------CHIYANKHULO-------------------- \n gwirisani maletala akumazele kuti musankhe \n ---------------------------------------------------- \n ENG -- english \n CHW -- chichewa \n --------------------------------------------------------------")
+           msg = response.message("---------------CHIYANKHULO------------------ \n gwirisani maletala akumazele kuti musankhe \n ---------------------------------------------------- \n ENG -- english \n CHW -- chichewa \n --------------------------------------------------------")
         
         elif ("eng" in inc) | ('mn' in inc):
           
