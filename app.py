@@ -63,7 +63,7 @@ def reply_whatsapp():
     if not int(num_media):
       
         if ('hello' in inc) | ('hi' in inc) :
-          msg = response.message("----------------LANGUAGE-------------------- \n Use Codes given to choose an option \n ---------------------------------------------------- \n ENG -- english \n ChW -- chichewa \n --------------------------------------------------------------")
+          msg = response.message("----------------LANGUAGE-------------------- \n Use Codes given to choose an option \n ---------------------------------------------------- \n ENG -- english \n CHW -- chichewa \n --------------------------------------------------------------")
           
         elif ("eng" in inc) | ('mn' in inc):
           
@@ -95,6 +95,14 @@ def reply_whatsapp():
           anm_D = dff2.loc[dff2['Code'] == inc,'Description'].values
           msg = response.message(str(anm_D[0]))
         
+        elif ('chw' in inc) | ('mn' in inc):
+          if np.any(dff3.user_number.values == phone_number):
+            outp = 'nothing'    
+          else:
+            requests.post(url = 'https://lkdzzx.deta.dev/language_change/',params = {'user_number':phone_number,'lan' : 'chichewa'})
+            
+          msg = response.message("----------------TSAMBA LALIKULU------------------\n  gwirisani maletala akumazele kuti musankhe \n----------------------------------------------------- \n KNWD -- dziwani za matenda \n KNWP -- dziwani za zomera \n KNWA -- dziwani za nyama \n KNWS -- dziwani za mashopu \n KNWM -- dziwani za manyowa \n KNWMA -- dziwani za misika")
+          
         else:
           output = 'waiting'
           msg = response.message(output)
