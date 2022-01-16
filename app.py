@@ -69,8 +69,10 @@ def reply_whatsapp():
           msg = response.message(str(pld_D[0]))
         
         elif 'anm' in inc:
-          output = 'api get resp anm'
-          msg = response.message(output)
+          output = requests.get(url = "https://1atqmr.deta.dev/get_all_animal_diseases/")
+          df = pd.DataFrame(output.json()['_items'])
+          msg = response.message('------ANIMAL DISEASES MENU---------- \n ---------------------------------------------- \n' + str(df[['Code','Disease']]) + '\n ' + '------------------------------------------------ \n DSAM -- to diseases Menu')
+          
         elif inc in 'api get resp anm':
           output = 'particular animal disaese'
           msg = response.message(output)
