@@ -45,6 +45,8 @@ def reply_whatsapp():
         num_media = request.values.get("NumMedia")
         inc = request.values.get("Body","").lower()
         media = request.values.get('MediaContentType0', '')
+        phone_number = request.form.get('From')
+        
     except (ValueError, TypeError):
         return "Invalid request: invalid or missing NumMedia parameter", 400
     response = MessagingResponse()
