@@ -74,7 +74,7 @@ def reply_whatsapp():
             
           msg = response.message("----------------MAIN MENU------------------\n  Use Codes given to choose an option\n----------------------------------------------------- \n KNWD -- know about diseases \n KNWP -- know about plants \n KNWA -- know about animals \n KNWS -- know about shops \n KNWM -- know about manure \n KNWMA -- know about markets")
           
-        elif ('knwd' in inc) | ('dsm' in inc):
+        elif ('knwd' in inc) | ('dsm' in inc) | (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] = 'english'):
           msg = response.message("----------DISEASE MENU------------ \n --------------------------------------------\n PLT -- plant diseases \n ANM -- animal diseases \n ------------------------------------------------ \n MN -- to main menu")
     
         elif 'plt' in inc:
