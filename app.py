@@ -77,21 +77,21 @@ def reply_whatsapp():
         elif ('knwd' in inc) | ('dsm' in inc) | (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           msg = response.message("----------DISEASE MENU------------ \n --------------------------------------------\n PLT -- plant diseases \n ANM -- animal diseases \n ------------------------------------------------ \n MN -- to main menu")
     
-        elif 'plt' in inc:
+        elif ('plt' in inc) | (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           output = requests.get(url = "https://1atqmr.deta.dev/get_all_plant_diseases/")
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message('------PLANT DISEASES MENU---------- \n ---------------------------------------------- \n' + str(df[['Code','Disease']]) + '\n ' + '------------------------------------------------ \n DSM -- to diseases Menu')
           
-        elif np.any(dff.Code.values == inc):
+        elif np.any(dff.Code.values == inc) | (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           pld_D = dff.loc[dff['Code'] == inc,'Description'].values
           msg = response.message(str(pld_D[0]))
         
-        elif 'anm' in inc:
+        elif ('anm' in inc) | (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           output = requests.get(url = "https://1atqmr.deta.dev/get_all_animal_diseases/")
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message('------ANIMAL DISEASES MENU---------- \n ---------------------------------------------- \n' + str(df[['Code','Disease']]) + '\n ' + '------------------------------------------------ \n DSM -- to diseases Menu')
           
-        elif np.any(dff2.Code.values == inc):
+        elif np.any(dff2.Code.values == inc) | (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           anm_D = dff2.loc[dff2['Code'] == inc,'Description'].values
           msg = response.message(str(anm_D[0]))
         
