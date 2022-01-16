@@ -98,7 +98,7 @@ def reply_whatsapp():
           anm_D = dff2.loc[dff2['Code'] == inc,'Description'].values
           msg = response.message(str(anm_D[0]))
         
-        elif ('chw' in inc) | ('mn' in inc):
+        elif ('chw' in inc) | ('tsam' in inc):
           
           if np.any(dff3.user_number.values == phone_number):
             requests.put(url = 'https://lkdzzx.deta.dev/update_language/',params = {'key':dff3.loc[dff3['user_number'] == phone_number,'key'].values[0],'user_number':phone_number,'lan' : 'chichewa'})  
@@ -106,7 +106,10 @@ def reply_whatsapp():
             requests.post(url = 'https://lkdzzx.deta.dev/language_change/',params = {'user_number':phone_number,'lan' : 'chichewa'})
             
           msg = response.message("-----------TSAMBA LALIKULU------------\n  gwirisani maletala akumazele kuti musankhe \n----------------------------------------------------- \n KNWD -- dziwani za matenda \n KNWP -- dziwani za zomera \n KNWA -- dziwani za nyama \n KNWS -- dziwani za mashopu \n KNWM -- dziwani za manyowa \n KNWMA -- dziwani za misika \n -------------------------------------------- \n LANGC -- kusintha chiyankhulo")
-          
+         
+        elif (('knwd' in inc) | ('dsm' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
+          msg = response.message("--------TSAMBA LA MATENDA---------- \n --------------------------------------------\n PLT -- matenda a zomera \n ANM -- matenda a nyama \n ------------------------------------------------ \n tsam -- tsamba lalikulu")
+        
         else:
           output = 'waiting'
           msg = response.message(output)
