@@ -68,7 +68,7 @@ def reply_whatsapp():
         elif ("eng" in inc) | ('mn' in inc):
           
           if np.any(dff3.user_number.values == phone_number):
-            requests.post(url = 'https://lkdzzx.deta.dev/language_change/',params = {'user_number':phone_number,'lan' : 'chichewa'})    
+            outp = 'nothing'    
           else:
             requests.post(url = 'https://lkdzzx.deta.dev/language_change/',params = {'user_number':phone_number,'lan' : 'english'})
             
