@@ -57,14 +57,22 @@ def reply_whatsapp():
     outputt2 = requests.get(url = "https://1atqmr.deta.dev/get_all_animal_diseases/")
     dff2 = pd.DataFrame(outputt2.json()['_items'])
     
-    requests.post(url = 'https://lkdzzx.deta.dev/language_change/',params = {'user_number':phone_number})
+    output_lan = requests.get(url = 'https://lkdzzx.deta.dev/get_user_current_language/')
+    dff3 = pd.DataFrame(output_lan.json()['_items'])
+    
+    for i in dff3.user_number.values:
+        if i == phone_number:
+          msg = response.message('a put request')
+          
+        else:
+          requests.post(url = 'https://lkdzzx.deta.dev/language_change/',params = {'user_number':phone_number})
     
     if not int(num_media):
       
         if ('hello' in inc) | ('hi' in inc) :
           msg = response.message("----------------LANGUAGE-------------------- \n Use Codes given to choose an option \n ---------------------------------------------------- \n ENG -- english \n ChW -- chichewa \n --------------------------------------------------------------")
           
-        elif ("english" in inc) | ('mn' in inc):
+        elif ("eng" in inc) | ('mn' in inc):
           msg = response.message("----------------MAIN MENU------------------\n  Use Codes given to choose an option\n----------------------------------------------------- \n KNWD -- know about diseases \n KNWP -- know about plants \n KNWA -- know about animals \n KNWS -- know about shops \n KNWM -- know about manure \n KNWMA -- know about markets")
         elif ('knwd' in inc) | ('dsm' in inc):
           msg = response.message("----------DISEASE MENU------------ \n --------------------------------------------\n PLT -- plant diseases \n ANM -- animal diseases \n ------------------------------------------------ \n MN -- to main menu")
