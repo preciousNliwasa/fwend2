@@ -99,8 +99,9 @@ def reply_whatsapp():
           msg = response.message(str(anm_D[0]))
         
         elif ('chw' in inc) | ('mn' in inc):
+          
           if np.any(dff3.user_number.values == phone_number):
-            outp = 'nothing'    
+            requests.put(url = 'https://lkdzzx.deta.dev/update_language/',params = {'key':dff3.loc[dff3['user_number'] == phone_number,'key'].values[0],'user_number':phone_number,'lan' : 'chichewa'})  
           else:
             requests.post(url = 'https://lkdzzx.deta.dev/language_change/',params = {'user_number':phone_number,'lan' : 'chichewa'})
             
