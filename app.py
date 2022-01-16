@@ -86,7 +86,7 @@ def reply_whatsapp():
           pld_D = dff.loc[dff['Code'] == inc,'Description'].values
           msg = response.message(str(pld_D[0]))
         
-        elif ('anm' in inc) % (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
+        elif ('anm' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           output = requests.get(url = "https://1atqmr.deta.dev/get_all_animal_diseases/")
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message('------ANIMAL DISEASES MENU---------- \n ---------------------------------------------- \n' + str(df[['Code','Disease']]) + '\n ' + '------------------------------------------------ \n DSM -- to diseases Menu')
