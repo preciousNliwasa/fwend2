@@ -57,6 +57,8 @@ def reply_whatsapp():
     outputt2 = requests.get(url = "https://1atqmr.deta.dev/get_all_animal_diseases/")
     dff2 = pd.DataFrame(outputt2.json()['_items'])
     
+    requests.post(url = 'https://lkdzzx.deta.dev/language_change/',params = {'user_number':phone_number})
+    
     if not int(num_media):
       
         if ('hello' in inc) | ('hi' in inc) :
