@@ -52,6 +52,9 @@ def reply_whatsapp():
     outputt = requests.get(url = "https://1atqmr.deta.dev/get_all_plant_diseases/")
     dff = pd.DataFrame(outputt.json()['_items'])
     
+    outputt2 = requests.get(url = "https://1atqmr.deta.dev/get_all_animal_diseases/")
+    dff2 = pd.DataFrame(outputt2.json()['_items'])
+    
     if not int(num_media):
       
         if ("hello" in inc) | ('hi' in inc) | ('mn' in inc):
@@ -71,11 +74,11 @@ def reply_whatsapp():
         elif 'anm' in inc:
           output = requests.get(url = "https://1atqmr.deta.dev/get_all_animal_diseases/")
           df = pd.DataFrame(output.json()['_items'])
-          msg = response.message('------ANIMAL DISEASES MENU---------- \n ---------------------------------------------- \n' + str(df[['Code','Disease']]) + '\n ' + '------------------------------------------------ \n DSAM -- to diseases Menu')
+          msg = response.message('------ANIMAL DISEASES MENU---------- \n ---------------------------------------------- \n' + str(df[['Code','Disease']]) + '\n ' + '------------------------------------------------ \n DSM -- to diseases Menu')
           
-        elif inc in 'api get resp anm':
-          output = 'particular animal disaese'
-          msg = response.message(output)
+        elif np.any(dff2.Code.values == inc):
+          anm_D = dff2.loc[dff2['Code'] == inc,'Description'].values
+          msg = response.message(str(anm_D[0]))
         
         else:
           output = 'waiting'
