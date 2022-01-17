@@ -117,7 +117,7 @@ def reply_whatsapp():
         elif ('plt' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           output = requests.get(url = "https://1atqmr.deta.dev/nthenda_zonse/")
           df = pd.DataFrame(output.json()['_items'])
-          msg = response.message('--TSAMBA LA MATENDA A ZOMERA-- \n ---------------------------------------------- \n' + str(df[['LETALA','MATENDA']]) + '\n ' + '------------------------------------------------ \n tsaz -- tsamba la zomera')
+          msg = response.message('--TSAMBA LA MATENDA A ZOMERA-- \n ---------------------------------------------- \n' + str(df[['Letala','Matenda']]) + '\n ' + '------------------------------------------------ \n tsaz -- tsamba la zomera')
         
         else:
           output = 'waiting'
