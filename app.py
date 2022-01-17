@@ -60,6 +60,9 @@ def reply_whatsapp():
     output_lan = requests.get(url = 'https://lkdzzx.deta.dev/get_user_current_language/')
     dff3 = pd.DataFrame(output_lan.json()['_items'])
     
+    output_op = requests.get(url = 'https://lkdzzx.deta.dev/get_user_current_operation/')
+    dff4 = pd.DataFrame(output_op.json()['_items'])
+    
     if not int(num_media):
       
         if ('hello' in inc) | ('hi' in inc) | ('lange' in inc) :
@@ -78,6 +81,7 @@ def reply_whatsapp():
           msg = response.message("----------------MAIN MENU------------------\n  Use Codes given to choose an option\n----------------------------------------------------- \n KNWD -- know about diseases \n KNWP -- know about plants \n KNWA -- know about animals \n KNWS -- know about shops \n KNWM -- know about manure \n KNWMA -- know about markets \n -------------------------------------------- \n LANGE -- change language ")
           
         elif (('knwd' in inc) | ('dsm' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
+                 
           msg = response.message("----------DISEASE MENU------------ \n --------------------------------------------\n PLT -- plant diseases \n ANM -- animal diseases \n ------------------------------------------------ \n MN -- to main menu")
     
         elif ('plt' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
