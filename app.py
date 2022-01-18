@@ -51,21 +51,27 @@ def reply_whatsapp():
         return "Invalid request: invalid or missing NumMedia parameter", 400
     response = MessagingResponse()
     
+    # api output to get all plant diseases
     outputt = requests.get(url = "https://1atqmr.deta.dev/get_all_plant_diseases/")
     dff = pd.DataFrame(outputt.json()['_items'])
     
+    # api output to get all plant diseases (chichewa)
     output5 = requests.get(url = "https://1atqmr.deta.dev/nthenda_zonse/")
     df5 = pd.DataFrame(output5.json()['_items'])
     
+    # api output to get all animal diseases (chichewa)
     output6 = requests.get(url = "https://1atqmr.deta.dev/nthenda_zonse_za_ziweto/")
     df6 = pd.DataFrame(output6.json()['_items'])
     
+    # api output to get all animal diseases 
     outputt2 = requests.get(url = "https://1atqmr.deta.dev/get_all_animal_diseases/")
     dff2 = pd.DataFrame(outputt2.json()['_items'])
     
+    # api output to get user current languange of choice
     output_lan = requests.get(url = 'https://lkdzzx.deta.dev/get_user_current_language/')
     dff3 = pd.DataFrame(output_lan.json()['_items'])
     
+    # api to get user current operation
     output_op = requests.get(url = 'https://lkdzzx.deta.dev/get_user_current_operation/')
     dff4 = pd.DataFrame(output_op.json()['_items'])
     
