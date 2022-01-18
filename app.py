@@ -79,75 +79,95 @@ def reply_whatsapp():
     
     if not int(num_media):
       
+        # intro ,default language = eng,
         if ('hello' in inc) | ('hi' in inc) | ('lange' in inc) :
           msg = response.message("----------------LANGUAGE-------------------- \n Use Codes given to choose an option \n ---------------------------------------------------- \n ENG -- english \n CHW -- chichewa \n ------------------------------------------------------")
         
+        # chichewa (language change)
         elif ('langc' in inc):
            msg = response.message("---------------CHIYANKHULO------------------ \n gwirisani maletala akumazele kuti musankhe \n ---------------------------------------------------- \n ENG -- english \n CHW -- chichewa \n --------------------------------------------------------")
         
+        # changing to english
         elif ("eng" in inc) | ('mn' in inc):
           
+          # updating to english if language was in chichewa
           if np.any(dff3.user_number.values == phone_number):
-             requests.put(url = 'https://lkdzzx.deta.dev/update_language/',params = {'key':dff3.loc[dff3['user_number'] == phone_number,'key'].values[0],'user_number':phone_number,'lan' : 'english'})    
+             requests.put(url = 'https://lkdzzx.deta.dev/update_language/',params = {'key':dff3.loc[dff3['user_number'] == phone_number,'key'].values[0],'user_number':phone_number,'lan' : 'english'})  
+              
           else:
+            # registering a new number in english
             requests.post(url = 'https://lkdzzx.deta.dev/language_change/',params = {'user_number':phone_number,'lan' : 'english'})
             
           msg = response.message("----------------MAIN MENU------------------\n  Use Codes given to choose an option\n----------------------------------------------------- \n KNWD -- know about diseases \n KNWP -- know about plants \n KNWA -- know about animals \n KNWS -- know about shops \n KNWM -- know about manure \n KNWMA -- know about markets \n -------------------------------------------- \n LANGE -- change language ")
-          
+        
+        # knowing about diseases (english)
         elif (('knwd' in inc) | ('dsm' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
                  
           msg = response.message("----------DISEASE MENU------------ \n --------------------------------------------\n PLT -- plant diseases \n ANM -- animal diseases \n ------------------------------------------------ \n MN -- to main menu")
-    
+        
+        # knowing about plant diseases (english)
         elif ('plt' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           output = requests.get(url = "https://1atqmr.deta.dev/get_all_plant_diseases/")
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message('------PLANT DISEASES MENU---------- \n ---------------------------------------------- \n' + str(df[['Code','Disease']]) + '\n ' + '------------------------------------------------ \n DSM -- to diseases Menu')
-          
+        
+        # description of choosen plant disease (english)  
         elif (np.any(dff.Code.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           pld_D = dff.loc[dff['Code'] == inc,'Description'].values
           msg = response.message(str(pld_D[0]))
         
+        # knowing about animal diseases (english)
         elif ('anm' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           output = requests.get(url = "https://1atqmr.deta.dev/get_all_animal_diseases/")
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message('------ANIMAL DISEASES MENU---------- \n ---------------------------------------------- \n' + str(df[['Code','Disease']]) + '\n ' + '------------------------------------------------ \n DSM -- to diseases Menu')
-          
+         
+        # description of choosen animal disease (english)
         elif (np.any(dff2.Code.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           anm_D = dff2.loc[dff2['Code'] == inc,'Description'].values
           msg = response.message(str(anm_D[0]))
         
+        # changing to chichewa
         elif ('chw' in inc) | ('tsam' in inc):
           
+          # updating lan to chichewa
           if np.any(dff3.user_number.values == phone_number):
-            requests.put(url = 'https://lkdzzx.deta.dev/update_language/',params = {'key':dff3.loc[dff3['user_number'] == phone_number,'key'].values[0],'user_number':phone_number,'lan' : 'chichewa'})  
+            requests.put(url = 'https://lkdzzx.deta.dev/update_language/',params = {'key':dff3.loc[dff3['user_number'] == phone_number,'key'].values[0],'user_number':phone_number,'lan' : 'chichewa'}) 
+           
           else:
+            # lan to chichewa
             requests.post(url = 'https://lkdzzx.deta.dev/language_change/',params = {'user_number':phone_number,'lan' : 'chichewa'})
             
           msg = response.message("-----------TSAMBA LALIKULU------------\n  gwirisani maletala akumazele kuti musankhe \n----------------------------------------------------- \n KNWD -- dziwani za matenda \n KNWP -- dziwani za zomera \n KNWA -- dziwani za nyama \n KNWS -- dziwani za mashopu \n KNWM -- dziwani za manyowa \n KNWMA -- dziwani za misika \n -------------------------------------------- \n LANGC -- kusintha chiyankhulo")
-         
+        
+        # knowing about diseases (chichewa)
         elif (('knwd' in inc) | ('tsaz' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           msg = response.message("--------TSAMBA LA MATENDA---------- \n --------------------------------------------\n PLT -- matenda a zomera \n ANM -- matenda a nyama \n ------------------------------------------------ \n tsam -- tsamba lalikulu")
         
+        # knowing about plant disease (chichewa)
         elif ('plt' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           output = requests.get(url = "https://1atqmr.deta.dev/nthenda_zonse/")
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message('--TSAMBA LA MATENDA A ZOMERA-- \n ---------------------------------------------- \n' + str(df[['Letala','Matenda']]) + '\n ' + '------------------------------------------------ \n tsaz -- tsamba la zomera')
         
+        # description of plant diseases (chichewa)
         elif (np.any(df5.Letala.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           pld_D = df5.loc[df5['Letala'] == inc,'Kulongosola'].values
           msg = response.message(str(pld_D[0]))
-          
+         
+        # knowing about animal diseases (chichewa)
         elif ('anm' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           output = requests.get(url = "https://1atqmr.deta.dev/nthenda_zonse_za_ziweto/")
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message('TSAMBA LA MATENDA A ZIWETO \n ---------------------------------------------- \n' + str(df[['Letala','Matenda']]) + '\n ' + '------------------------------------------------ \n tsaz -- tsamba la zomera')
         
+        # description of choosen animal disease (chichewa)
         elif (np.any(df6.Letala.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           pld_D = df6.loc[df6['Letala'] == inc,'Kulongosola'].values
           msg = response.message(str(pld_D[0]))
         
         else:
-          output = 'waiting'
+          output = 'still in development'
           msg = response.message(output)
     
           
