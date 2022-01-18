@@ -127,6 +127,11 @@ def reply_whatsapp():
         elif (np.any(df5.Letala.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           pld_D = df5.loc[df5['Letala'] == inc,'Kulongosola'].values
           msg = response.message(str(pld_D[0]))
+          
+        elif ('anm' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
+          output = requests.get(url = "https://1atqmr.deta.dev/nthenda_zonse_za_ziweto/")
+          df = pd.DataFrame(output.json()['_items'])
+          msg = response.message('---TSAMBA LA MATENDA A ZIWETO---- \n ---------------------------------------------- \n' + str(df[['Letala','Matenda']]) + '\n ' + '------------------------------------------------ \n tsaz -- tsamba la zomera')
         
         else:
           output = 'waiting'
