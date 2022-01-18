@@ -57,6 +57,9 @@ def reply_whatsapp():
     output5 = requests.get(url = "https://1atqmr.deta.dev/nthenda_zonse/")
     df5 = pd.DataFrame(output5.json()['_items'])
     
+    output6 = requests.get(url = "https://1atqmr.deta.dev/nthenda_zonse_za_ziweto/")
+    df6 = pd.DataFrame(output6.json()['_items'])
+    
     outputt2 = requests.get(url = "https://1atqmr.deta.dev/get_all_animal_diseases/")
     dff2 = pd.DataFrame(outputt2.json()['_items'])
     
@@ -131,7 +134,11 @@ def reply_whatsapp():
         elif ('anm' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           output = requests.get(url = "https://1atqmr.deta.dev/nthenda_zonse_za_ziweto/")
           df = pd.DataFrame(output.json()['_items'])
-          msg = response.message('---TSAMBA LA MATENDA A ZIWETO---- \n ---------------------------------------------- \n' + str(df[['Letala','Matenda']]) + '\n ' + '------------------------------------------------ \n tsaz -- tsamba la zomera')
+          msg = response.message('TSAMBA LA MATENDA A ZIWETO \n ---------------------------------------------- \n' + str(df[['Letala','Matenda']]) + '\n ' + '------------------------------------------------ \n tsaz -- tsamba la zomera')
+        
+        elif (np.any(df6.Letala.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
+          pld_D = df6.loc[df6['Letala'] == inc,'Kulongosola'].values
+          msg = response.message(str(pld_D[0]))
         
         else:
           output = 'waiting'
