@@ -54,6 +54,9 @@ def reply_whatsapp():
     outputt = requests.get(url = "https://1atqmr.deta.dev/get_all_plant_diseases/")
     dff = pd.DataFrame(outputt.json()['_items'])
     
+    output5 = requests.get(url = "https://1atqmr.deta.dev/nthenda_zonse/")
+    df5 = pd.DataFrame(output5.json()['_items'])
+    
     outputt2 = requests.get(url = "https://1atqmr.deta.dev/get_all_animal_diseases/")
     dff2 = pd.DataFrame(outputt2.json()['_items'])
     
@@ -62,6 +65,8 @@ def reply_whatsapp():
     
     output_op = requests.get(url = 'https://lkdzzx.deta.dev/get_user_current_operation/')
     dff4 = pd.DataFrame(output_op.json()['_items'])
+    
+    
     
     if not int(num_media):
       
@@ -118,6 +123,10 @@ def reply_whatsapp():
           output = requests.get(url = "https://1atqmr.deta.dev/nthenda_zonse/")
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message('--TSAMBA LA MATENDA A ZOMERA-- \n ---------------------------------------------- \n' + str(df[['Letala','Matenda']]) + '\n ' + '------------------------------------------------ \n tsaz -- tsamba la zomera')
+        
+        elif (np.any(dff.Code.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
+          pld_D = df5.loc[df5['Letala'] == inc,'Kulongosola'].values
+          msg = response.message(str(pld_D[0]))
         
         else:
           output = 'waiting'
