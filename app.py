@@ -81,11 +81,11 @@ def reply_whatsapp():
       
         # intro ,default language = eng,
         if ('hello' in inc) | ('hi' in inc) | ('lange' in inc) :
-          msg = response.message("----------------LANGUAGE-------------------- \n Use Codes given to choose an option \n ---------------------------------------------------- \n ENG -- english \n CHW -- chichewa \n ------------------------------------------------------")
+          msg = response.message("----------------LANGUAGE-------------------- \n Use Codes given to choose an option \n ---------------------------------------------------- \n ENG -- english \n CHW -- chichewa \n VN -- audio \n ------------------------------------------------------")
         
         # chichewa (language change)
         elif ('langc' in inc):
-           msg = response.message("---------------CHIYANKHULO------------------ \n gwirisani maletala akumazele kuti musankhe \n ---------------------------------------------------- \n ENG -- english \n CHW -- chichewa \n --------------------------------------------------------")
+           msg = response.message("---------------CHIYANKHULO------------------ \n gwirisani maletala akumazele kuti musankhe \n ---------------------------------------------------- \n ENG -- english \n CHW -- chichewa \n VN -- audio \n --------------------------------------------------------")
         
         # changing to english
         elif ("eng" in inc) | ('mn' in inc):
@@ -166,7 +166,7 @@ def reply_whatsapp():
           pld_D = df6.loc[df6['Letala'] == inc,'Kulongosola'].values
           msg = response.message(str(pld_D[0]))
           
-        elif ("eng_vn" in inc) | ('mx' in inc):
+        elif ("vn" in inc) | ('mx' in inc):
           
           # updating to english_vn if language was in chichewa or eng
           if np.any(dff3.user_number.values == phone_number):
@@ -176,7 +176,8 @@ def reply_whatsapp():
             # registering a new number in english_vn
             requests.post(url = 'https://lkdzzx.deta.dev/language_change/',params = {'user_number':phone_number,'lan' : 'english_vn'})
             
-          msg = response.message("----------------MAIN MENU------------------\n  Use Codes given to choose an option\n----------------------------------------------------- \n KNWD -- know about diseases \n KNWP -- know about plants \n KNWA -- know about animals \n KNWS -- know about shops \n KNWM -- know about manure \n KNWMA -- know about markets \n -------------------------------------------- \n LANGE -- change language ")
+          msg = response.message('VN MENU')
+          msg.media('https://1atqmr.deta.dev/stream/menu.wav')
         
         else:
           output = 'still in development'
