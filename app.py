@@ -165,6 +165,18 @@ def reply_whatsapp():
         elif (np.any(df6.Letala.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           pld_D = df6.loc[df6['Letala'] == inc,'Kulongosola'].values
           msg = response.message(str(pld_D[0]))
+          
+        elif ("eng_vn" in inc) | ('mx' in inc):
+          
+          # updating to english_vn if language was in chichewa or eng
+          if np.any(dff3.user_number.values == phone_number):
+             requests.put(url = 'https://lkdzzx.deta.dev/update_language/',params = {'key':dff3.loc[dff3['user_number'] == phone_number,'key'].values[0],'user_number':phone_number,'lan' : 'english_vn'})  
+              
+          else:
+            # registering a new number in english_vn
+            requests.post(url = 'https://lkdzzx.deta.dev/language_change/',params = {'user_number':phone_number,'lan' : 'english_vn'})
+            
+          msg = response.message("----------------MAIN MENU------------------\n  Use Codes given to choose an option\n----------------------------------------------------- \n KNWD -- know about diseases \n KNWP -- know about plants \n KNWA -- know about animals \n KNWS -- know about shops \n KNWM -- know about manure \n KNWMA -- know about markets \n -------------------------------------------- \n LANGE -- change language ")
         
         else:
           output = 'still in development'
