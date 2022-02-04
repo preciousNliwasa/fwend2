@@ -222,7 +222,7 @@ def reply_whatsapp():
             msg.media(file_url)
             
         else:
-            msg = response.message('we dont understand what you have given')
+            msg = response.message('we dont understand what you have given bro')
           
     return str(response)
  
