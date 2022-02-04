@@ -126,6 +126,12 @@ def reply_whatsapp():
         elif (np.any(dff2.Code.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           anm_D = dff2.loc[dff2['Code'] == inc,'Description'].values
           msg = response.message(str(anm_D[0]))
+          
+        elif ('knwp' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
+          
+          output = requests.get(url = '')
+          df = pd.DataFrame(output.json()['_items'])
+          msg = response.message("----------CROPS MENU------------ \n --------------------------------------------\n" + str(df[['Code','Crop']]) + " ------------------------------------------------ \n MN -- to main menu")
         
         # changing to chichewa
         elif ('chw' in inc) | ('tsam' in inc):
