@@ -177,7 +177,7 @@ def reply_whatsapp():
             requests.post(url = 'https://lkdzzx.deta.dev/language_change/',params = {'user_number':phone_number,'lan' : 'english_vn'})
             
           msg = response.message('VN MENU')
-          msg.media('https://1atqmr.deta.dev/stream/first.mp4')
+          msg.media('https://1atqmr.deta.dev/stream/menu.mp4')
         
         else:
           output = 'still in development'
