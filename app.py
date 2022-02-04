@@ -129,7 +129,7 @@ def reply_whatsapp():
           
         elif ('knwp' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           
-          output = requests.get(url = '')
+          output = requests.get(url = "https://1atqmr.deta.dev/get_crops/")
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message("----------CROPS MENU------------ \n --------------------------------------------\n" + str(df[['Code','Crop']]) + " ------------------------------------------------ \n MN -- to main menu")
         
