@@ -75,6 +75,9 @@ def reply_whatsapp():
     output_op = requests.get(url = 'https://lkdzzx.deta.dev/get_user_current_operation/')
     dff4 = pd.DataFrame(output_op.json()['_items'])
     
+    output8 = requests.get(url = "https://1atqmr.deta.dev/get_crops/")
+    dff8 = pd.DataFrame(output8.json()['_items'])
+    
     
     
     if not int(num_media):
@@ -132,6 +135,10 @@ def reply_whatsapp():
           output = requests.get(url = "https://1atqmr.deta.dev/get_crops/")
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message("----------CROPS MENU------------ \n --------------------------------------------\n" + str(df[['Code','Crop']]) + " ------------------------------------------------ \n MN -- to main menu")
+          
+        elif (np.any(dff8.Code.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
+          crops = dff8.loc[dff8['Code'] == inc,'Description'].values
+          msg = response.message(str(crops[0]))
         
         # changing to chichewa
         elif ('chw' in inc) | ('tsam' in inc):
