@@ -202,7 +202,7 @@ def reply_whatsapp():
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message("------TSAMBA LA ZOMERA------- \n --------------------------------------------\n" + str(df[['Letala','Zomera']]) + "\n " + " ------------------------------------------------ \n tsam -- tsamba lalikulu")
           
-        elif (np.any(dff9.Code.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
+        elif (np.any(dff9.Letala.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           zomera = dff9.loc[dff9['Letala'] == inc,'Kulongosola'].values
           msg = response.message(str(zomera[0]))  
           
@@ -211,8 +211,8 @@ def reply_whatsapp():
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message("---------TSAMBA LA ZIWETO---------- \n --------------------------------------------\n" + str(df[['Letala','Ziweto']]) + " ------------------------------------------------ \n tsam -- tsamba lalikulu")
           
-        elif (np.any(dff10.Code.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
-          ziweto = dff10.loc[dff10['Code'] == inc,'Kulongosola'].values
+        elif (np.any(dff10.Letala.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
+          ziweto = dff10.loc[dff10['Letala'] == inc,'Kulongosola'].values
           msg = response.message(str(ziweto[0]))
           
         elif ("vn" in inc) | ('mx' in inc):
