@@ -84,6 +84,9 @@ def reply_whatsapp():
     output9 = requests.get(url = "https://1atqmr.deta.dev/zomera_zonse/")
     dff9 = pd.DataFrame(output9.json()['_items'])
     
+    output10 = requests.get(url = "https://1atqmr.deta.dev/ziweto_zonse/")
+    dff10 = pd.DataFrame(output10.json()['_items'])
+    
     
     if not int(num_media):
       
@@ -202,6 +205,15 @@ def reply_whatsapp():
         elif (np.any(dff9.Code.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           zomera = dff9.loc[dff9['Letala'] == inc,'Kulongosola'].values
           msg = response.message(str(zomera[0]))  
+          
+        elif ('knwa' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
+          output = requests.get(url = "https://1atqmr.deta.dev/ziweto_zonse/")
+          df = pd.DataFrame(output.json()['_items'])
+          msg = response.message("---------TSAMBA LA ZIWETO---------- \n --------------------------------------------\n" + str(df[['Letala','Ziweto']]) + " ------------------------------------------------ \n tsam -- tsamba lalikulu")
+          
+        elif (np.any(dff10.Code.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
+          ziweto = dff10.loc[dff10['Code'] == inc,'Kulongosola'].values
+          msg = response.message(str(ziweto[0]))
           
         elif ("vn" in inc) | ('mx' in inc):
           
