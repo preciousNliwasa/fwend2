@@ -81,6 +81,8 @@ def reply_whatsapp():
     output8 = requests.get(url = "https://1atqmr.deta.dev/get_crops/")
     dff8 = pd.DataFrame(output8.json()['_items'])
     
+    output9 = requests.get(url = "https://1atqmr.deta.dev/zomera_zonse/")
+    dff9 = pd.DataFrame(output9.json()['_items'])
     
     
     if not int(num_media):
@@ -197,9 +199,9 @@ def reply_whatsapp():
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message("------TSAMBA LA ZOMERA------- \n --------------------------------------------\n" + str(df[['Letala','Zomera']]) + + "\n " + " ------------------------------------------------ \n tsam -- tsamba lalikulu")
           
-        elif (np.any(dff8.Code.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
-          crops = dff8.loc[dff8['Code'] == inc,'Description'].values
-          msg = response.message(str(crops[0]))  
+        elif (np.any(dff9.Code.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
+          zomera = dff9.loc[dff9['Letala'] == inc,'Kulongosola'].values
+          msg = response.message(str(zomera[0]))  
           
         elif ("vn" in inc) | ('mx' in inc):
           
