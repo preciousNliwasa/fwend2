@@ -75,15 +75,19 @@ def reply_whatsapp():
     output_op = requests.get(url = 'https://lkdzzx.deta.dev/get_user_current_operation/')
     dff4 = pd.DataFrame(output_op.json()['_items'])
     
+    # api to access animals database
     output7 = requests.get(url = "https://1atqmr.deta.dev/get_animals/")
     dff7 = pd.DataFrame(output7.json()['_items'])
     
+    # api to access crops database
     output8 = requests.get(url = "https://1atqmr.deta.dev/get_crops/")
     dff8 = pd.DataFrame(output8.json()['_items'])
     
+    # api to access zomera database
     output9 = requests.get(url = "https://1atqmr.deta.dev/zomera_zonse/")
     dff9 = pd.DataFrame(output9.json()['_items'])
     
+    # api to access ziweto database
     output10 = requests.get(url = "https://1atqmr.deta.dev/ziweto_zonse/")
     dff10 = pd.DataFrame(output10.json()['_items'])
     
@@ -137,23 +141,27 @@ def reply_whatsapp():
         elif (np.any(dff2.Code.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           anm_D = dff2.loc[dff2['Code'] == inc,'Description'].values
           msg = response.message(str(anm_D[0]))
-          
+         
+        # knowing about crops
         elif ('knwp' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           
           output = requests.get(url = "https://1atqmr.deta.dev/get_crops/")
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message("----------CROPS MENU------------ \n --------------------------------------------\n" + str(df[['Code','Crop']]) + " ------------------------------------------------ \n MN -- to main menu")
-          
+        
+        # description of choosen crop
         elif (np.any(dff8.Code.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           crops = dff8.loc[dff8['Code'] == inc,'Description'].values
           msg = response.message(str(crops[0]))
         
+        # knowing about animals
         elif ('knwa' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           
           output = requests.get(url = "https://1atqmr.deta.dev/get_animals/")
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message("----------ANIMALS MENU------------ \n --------------------------------------------\n" + str(df[['Code','Animal']]) + " ------------------------------------------------ \n MN -- to main menu")
-          
+        
+        # description of the selected animal
         elif (np.any(dff7.Code.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           animals = dff7.loc[dff7['Code'] == inc,'Description'].values
           msg = response.message(str(animals[0]))
@@ -196,21 +204,25 @@ def reply_whatsapp():
         elif (np.any(df6.Letala.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           pld_D = df6.loc[df6['Letala'] == inc,'Kulongosola'].values
           msg = response.message(str(pld_D[0]))
-          
+         
+        # knowing about zomera
         elif ('knwp' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           output = requests.get(url = "https://1atqmr.deta.dev/zomera_zonse/")
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message("------TSAMBA LA ZOMERA------- \n --------------------------------------------\n" + str(df[['Letala','Zomera']]) + "\n " + " ------------------------------------------------ \n tsam -- tsamba lalikulu")
-          
+        
+        # description of the choosen chomera
         elif (np.any(dff9.Letala.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           zomera = dff9.loc[dff9['Letala'] == inc,'Kulongosola'].values
           msg = response.message(str(zomera[0]))  
-          
+         
+        # knowing about ziweto
         elif ('knwa' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           output = requests.get(url = "https://1atqmr.deta.dev/ziweto_zonse/")
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message("---------TSAMBA LA ZIWETO---------- \n --------------------------------------------\n" + str(df[['Letala','Ziweto']]) + "\n " + " ------------------------------------------------ \n tsam -- tsamba lalikulu")
-          
+        
+        # description of the selected chiweto
         elif (np.any(dff10.Letala.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           ziweto = dff10.loc[dff10['Letala'] == inc,'Kulongosola'].values
           msg = response.message(str(ziweto[0]))
