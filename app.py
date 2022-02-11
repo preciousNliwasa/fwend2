@@ -200,7 +200,7 @@ def reply_whatsapp():
         elif ('knwp' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           output = requests.get(url = "https://1atqmr.deta.dev/zomera_zonse/")
           df = pd.DataFrame(output.json()['_items'])
-          msg = response.message("------TSAMBA LA ZOMERA------- \n --------------------------------------------\n" + str(df[['Letala','Zomera']]) + + "\n " + " ------------------------------------------------ \n tsam -- tsamba lalikulu")
+          msg = response.message("------TSAMBA LA ZOMERA------- \n --------------------------------------------\n" + str(df[['Letala','Zomera']]) + "\n " + " ------------------------------------------------ \n tsam -- tsamba lalikulu")
           
         elif (np.any(dff9.Code.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           zomera = dff9.loc[dff9['Letala'] == inc,'Kulongosola'].values
