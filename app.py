@@ -209,7 +209,7 @@ def reply_whatsapp():
         elif ('knwa' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           output = requests.get(url = "https://1atqmr.deta.dev/ziweto_zonse/")
           df = pd.DataFrame(output.json()['_items'])
-          msg = response.message("---------TSAMBA LA ZIWETO---------- \n --------------------------------------------\n" + str(df[['Letala','Ziweto']]) + " ------------------------------------------------ \n tsam -- tsamba lalikulu")
+          msg = response.message("---------TSAMBA LA ZIWETO---------- \n --------------------------------------------\n" + str(df[['Letala','Ziweto']]) + "\n " + " ------------------------------------------------ \n tsam -- tsamba lalikulu")
           
         elif (np.any(dff10.Letala.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           ziweto = dff10.loc[dff10['Letala'] == inc,'Kulongosola'].values
