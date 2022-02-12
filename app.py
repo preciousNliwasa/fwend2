@@ -185,8 +185,8 @@ def reply_whatsapp():
         elif ('SOTH' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           output = requests.get(url = "https://1atqmr.deta.dev/all_shops/")
           df = pd.DataFrame(output.json()['_items'])
-          dist3 = df.District.value_counts().index.values
-          msg = response.message("----------SHOPS MENU------------ \n --------------------------------------------\n" + str(dist3) + " ----------------------------------")
+          dist4 = df.District.value_counts().index.values
+          msg = response.message("----------SHOPS MENU------------ \n --------------------------------------------\n" + str(dist4) + " ----------------------------------")
           
         elif ('gopr' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           msg = response.message('still under construction')
