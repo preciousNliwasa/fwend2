@@ -169,6 +169,10 @@ def reply_whatsapp():
           animals = dff7.loc[dff7['Code'] == inc,'Description'].values
           msg = response.message(str(animals[0]))
         
+        # knowing about shops
+        elif ('knws' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
+          msg = response.message("--------------REGION-------------------- \n ------------------------------------------- \n NRT -- Northen \n CENTR -- Central \n STH -- Southern \n -------------------------------------------- \n MN -- to main menu")
+        
         elif ('gopr' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           msg = response.message('still under construction')
           
