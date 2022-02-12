@@ -197,7 +197,11 @@ def reply_whatsapp():
           
         #animals = dfff11.loc[dfff11['District'] == inc,'Description'].values
         #msg = response.message(str(animals[0])) 
+         
+        elif (np.any(dfff11.Shop.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
+          shop = dfff11.loc[dfff11['Shop'] == inc,'Description'].values
           
+        
         elif ('gopr' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           msg = response.message('still under construction')
           
