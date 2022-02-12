@@ -174,7 +174,7 @@ def reply_whatsapp():
         
         # knowing about shops
         elif ('knws' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
-          msg = response.message("--------------REGION-------------------- \n ------------------------------------------- \n NRT -- Northen \n CENTR -- Central \n STH -- Southern \n -------------------------------------------- \n MN -- to main menu")
+          msg = response.message("--------------REGION-------------------- \n ------------------------------------------- \n NRT -- Northen \n CENTR -- Central \n SOTH -- Southern \n -------------------------------------------- \n MN -- to main menu")
         
         elif ('NRT' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           msg = response.message('north')
@@ -182,11 +182,11 @@ def reply_whatsapp():
         elif ('CENTR' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           msg = response.message('central')
          
-        elif ('STH' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
+        elif ('SOTH' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           output = requests.get(url = "https://1atqmr.deta.dev/all_shops/")
           df = pd.DataFrame(output.json()['_items'])
-          dist = df.District.value_counts().index.values
-          msg = response.message("----------CROPS MENU------------ \n --------------------------------------------\n" + str(dist) + " ----------------------------------")
+          dist3 = df.District.value_counts().index.values
+          msg = response.message("----------SHOPS MENU------------ \n --------------------------------------------\n" + str(dist3) + " ----------------------------------")
           
         elif ('gopr' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           msg = response.message('still under construction')
