@@ -113,7 +113,7 @@ def reply_whatsapp():
             # registering a new number in english
             requests.post(url = 'https://lkdzzx.deta.dev/language_change/',params = {'user_number':phone_number,'lan' : 'english'})
             
-          msg = response.message("----------------CHANNEL------------------\n  Use Codes given to choose an option\n----------------------------------------------------- \n GOPU -- Go Public \n GOPR -- Go Private  \n LANGE -- Change Language")
+          msg = response.message("----------------CHANNEL------------------\n  Use Codes given to choose an option\n----------------------------------------------------- \n GOPU -- Go Public \n GOPR -- Go Private \n --------------------------------------------- \n LANGE -- Change Language")
         
         elif ('gopu' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           msg = response.message("----------------MAIN MENU------------------\n  Use Codes given to choose an option\n----------------------------------------------------- \n KNWD -- know about diseases \n KNWP -- know about plants \n KNWA -- know about animals \n KNWS -- know about shops \n KNWM -- know about manure \n KNWMA -- know about markets \n -------------------------------------------- \n CHL -- change channel ")
