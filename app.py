@@ -169,6 +169,9 @@ def reply_whatsapp():
           animals = dff7.loc[dff7['Code'] == inc,'Description'].values
           msg = response.message(str(animals[0]))
         
+        elif ('gopr' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
+          msg = response.message('still under construction')
+          
         # changing to chichewa
         elif ('chw' in inc) | ('tsam' in inc):
           
