@@ -186,17 +186,17 @@ def reply_whatsapp():
           msg = response.message("-----------NJIRA------------\n  gwirisani maletala akumazele kuti musankhe \n----------------------------------------------------- \n gopu -- mauthenga a poyera  \n gopr -- mauthenga a puraiveti \n -------------------------------------------- \n LANGC -- kusintha chiyankhulo")
         
         elif (('gopu' in inc) | ('tsam' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
-          msg = response.message("-----------TSAMBA LALIKULU------------\n  gwirisani maletala akumazele kuti musankhe \n----------------------------------------------------- \n KNWD -- dziwani za matenda \n KNWP -- dziwani za zomera \n KNWA -- dziwani za nyama \n KNWS -- dziwani za mashopu \n KNWM -- dziwani za manyowa \n KNWMA -- dziwani za misika \n -------------------------------------------- \n njr -- kusintha njira")
+          msg = response.message("-----------TSAMBA LALIKULU------------\n  gwirisani maletala akumazele kuti musankhe \n----------------------------------------------------- \n KNWD -- dziwani za matenda \n KNWP -- dziwani za zomera \n KNWA -- dziwani za nyama \n KNWS -- dziwani za mashopu \n KNWM -- dziwani za manyowa \n KNWMA -- dziwani za misika \n -------------------------------------------- \n NJR -- kusintha njira")
         
         # knowing about diseases (chichewa)
         elif (('knwd' in inc) | ('tsaz' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
-          msg = response.message("--------TSAMBA LA MATENDA---------- \n --------------------------------------------\n PLT -- matenda a zomera \n ANM -- matenda a nyama \n ------------------------------------------------ \n tsam -- tsamba lalikulu")
+          msg = response.message("--------TSAMBA LA MATENDA---------- \n --------------------------------------------\n PLT -- matenda a zomera \n ANM -- matenda a nyama \n ------------------------------------------------ \n TSAM -- tsamba lalikulu")
         
         # knowing about plant disease (chichewa)
         elif ('plt' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           output = requests.get(url = "https://1atqmr.deta.dev/nthenda_zonse/")
           df = pd.DataFrame(output.json()['_items'])
-          msg = response.message('--TSAMBA LA MATENDA A ZOMERA-- \n ---------------------------------------------- \n' + str(df[['Letala','Matenda']]) + '\n ' + '------------------------------------------------ \n tsaz -- tsamba la zomera')
+          msg = response.message('--TSAMBA LA MATENDA A ZOMERA-- \n ---------------------------------------------- \n' + str(df[['Letala','Matenda']]) + '\n ' + '------------------------------------------------ \n TSAZ -- tsamba la matenda')
         
         # description of plant diseases (chichewa)
         elif (np.any(df5.Letala.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
@@ -207,7 +207,7 @@ def reply_whatsapp():
         elif ('anm' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
           output = requests.get(url = "https://1atqmr.deta.dev/nthenda_zonse_za_ziweto/")
           df = pd.DataFrame(output.json()['_items'])
-          msg = response.message('TSAMBA LA MATENDA A ZIWETO \n ---------------------------------------------- \n' + str(df[['Letala','Matenda']]) + '\n ' + '------------------------------------------------ \n tsaz -- tsamba la zomera')
+          msg = response.message('TSAMBA LA MATENDA A ZIWETO \n ---------------------------------------------- \n' + str(df[['Letala','Matenda']]) + '\n ' + '------------------------------------------------ \n TSAZ -- tsamba la matenda')
         
         # description of choosen animal disease (chichewa)
         elif (np.any(df6.Letala.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'chichewa'):
