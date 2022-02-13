@@ -206,6 +206,7 @@ def reply_whatsapp():
           output = requests.get(url = "https://1atqmr.deta.dev/get_products/")
           df = pd.DataFrame(output.json()['_items'])
           products = df.loc[df['Shop'] == inc]
+          msg = response.message("---------------{0}----------------" + str(shop_descr) + "\n ----------------------------" + str(products[["Product","Price"]]) + "\n ------------------------------------".format(inc))
           
           
         
