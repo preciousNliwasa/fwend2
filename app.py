@@ -182,17 +182,15 @@ def reply_whatsapp():
         elif (('knws' in inc) | ('reg' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           msg = response.message("--------------REGION-------------------- \n ------------------------------------------- \n NRT -- Northen \n CENTR -- Central \n STH -- Southern \n -------------------------------------------- \n MN -- to main menu")
         
-        elif (('nrt' in inc) | ('centr' in inc) | ('sth' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
-          
-          
+        elif ('nrt' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           
           # updating to english if language was in chichewa
           if np.any(dffregion.user_number.values == phone_number):
-             requests.put(url = 'https://lkdzzx.deta.dev/update_region/',params = {'key':dffregion.loc[dffregion['user_number'] == phone_number,'key'].values[0],'user_number':phone_number,'region' : region})  
+             requests.put(url = 'https://lkdzzx.deta.dev/update_region/',params = {'key':dffregion.loc[dffregion['user_number'] == phone_number,'key'].values[0],'user_number':phone_number,'region' : 'north'})  
               
           else:
             # registering a new number in english
-            requests.post(url = 'https://lkdzzx.deta.dev/post_shops_region/',params = {'user_number':phone_number,'region' : region})
+            requests.post(url = 'https://lkdzzx.deta.dev/post_shops_region/',params = {'user_number':phone_number,'region' : 'north'})
             
           output = requests.get(url = "https://1atqmr.deta.dev/all_shops/")
           dff = pd.DataFrame(output.json()['_items'])
