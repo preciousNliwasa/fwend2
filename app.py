@@ -182,16 +182,7 @@ def reply_whatsapp():
         elif (('knws' in inc) | ('reg' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           msg = response.message("--------------REGION-------------------- \n ------------------------------------------- \n NRT -- Northen \n CENTR -- Central \n STH -- Southern \n -------------------------------------------- \n MN -- to main menu")
         
-        elif ('nrt' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
-          
-          # updating to english if language was in chichewa
-          if np.any(dffregion.user_number.values == phone_number):
-             requests.put(url = 'https://lkdzzx.deta.dev/update_region/',params = {'key':dffregion.loc[dffregion['user_number'] == phone_number,'key'].values[0],'user_number':phone_number,'region' : 'north'})  
-              
-          else:
-            # registering a new number in english
-            requests.post(url = 'https://lkdzzx.deta.dev/post_shops_region/',params = {'user_number':phone_number,'region' : 'north'})
-            
+        elif ('nrt' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):            
           output = requests.get(url = "https://1atqmr.deta.dev/all_shops/")
           dff = pd.DataFrame(output.json()['_items'])
           df = dff.loc[dff['Region'] == 'north']
@@ -205,7 +196,7 @@ def reply_whatsapp():
           dist4 = pd.DataFrame({'District':df.District.value_counts().index.values})
           msg = response.message("----------DISTRICT MENU------------ \n --------------------------------------------\n" + str(dist4) + "\n " + "---------------------------------------- \n REG -- to region menu")
          
-        elif (('sth' in inc) | ('som' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
+        elif ('sth' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           output = requests.get(url = "https://1atqmr.deta.dev/all_shops/")
           dff = pd.DataFrame(output.json()['_items'])
           df = dff.loc[dff['Region'] == 'south']
@@ -217,7 +208,7 @@ def reply_whatsapp():
           #df = pd.DataFrame(output.json()['_items'])
           shop = dfff11.loc[dfff11['District'] == inc,'Shop'].values
           df = pd.DataFrame({'Shops':shop})
-          msg = response.message("-----------------SHOPS MENU----------------- \n " + str(df) + "\n ---------------------------------------- \n SOM -- to district menu")
+          msg = response.message("-----------------SHOPS MENU----------------- \n " + str(df) + "\n ---------------------------------------- \n REG -- to region menu")
           
         #animals = dfff11.loc[dfff11['District'] == inc,'Description'].values
         #msg = response.message(str(animals[0])) 
