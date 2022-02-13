@@ -202,7 +202,11 @@ def reply_whatsapp():
         #msg = response.message(str(animals[0])) 
          
         elif (np.any(dfff11.Shop.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
-          shop = dfff11.loc[dfff11['Shop'] == inc,'Description'].values
+          shop_descr = dfff11.loc[dfff11['Shop'] == inc,'Description'].values
+          output = requests.get(url = "https://1atqmr.deta.dev/get_products/")
+          df = pd.DataFrame(output.json()['_items'])
+          products = df.loc[df['Shop'] == inc]
+          
           
         
         elif ('gopr' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
