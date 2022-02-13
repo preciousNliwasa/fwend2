@@ -176,7 +176,7 @@ def reply_whatsapp():
           msg = response.message(str(animals[0]))
         
         # knowing about shops
-        elif ('knws' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
+        elif (('knws' in inc) | ('reg' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           msg = response.message("--------------REGION-------------------- \n ------------------------------------------- \n NRT -- Northen \n CENTR -- Central \n STH -- Southern \n -------------------------------------------- \n MN -- to main menu")
         
         elif ('nrt' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
@@ -185,18 +185,18 @@ def reply_whatsapp():
         elif ('centr' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           msg = response.message('central')
          
-        elif ('sth' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
+        elif (('sth' in inc) | ('som' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           output = requests.get(url = "https://1atqmr.deta.dev/all_shops/")
           df = pd.DataFrame(output.json()['_items'])
           dist4 = pd.DataFrame({'District':df.District.value_counts().index.values})
-          msg = response.message("----------DISTRICT MENU------------ \n --------------------------------------------\n" + str(dist4) + "\n " + "----------------------------------")
+          msg = response.message("----------DISTRICT MENU------------ \n --------------------------------------------\n" + str(dist4) + "\n " + "---------------------------------------- \n REG -- to region menu")
           
-        elif (np.any(dfff11.District.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
+        elif ((np.any(dfff11.District.values == inc) == True) | ('shp' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           #output = requests.get(url = "https://1atqmr.deta.dev/all_shops/")
           #df = pd.DataFrame(output.json()['_items'])
           shop = dfff11.loc[dfff11['District'] == inc,'Shop'].values
           df = pd.DataFrame({'Shops':shop})
-          msg = response.message("-----------------SHOPS MENU----------------- \n " + str(df) + "\n ----------------------------------------")
+          msg = response.message("-----------------SHOPS MENU----------------- \n " + str(df) + "\n ---------------------------------------- \n SOM -- to district menu")
           
         #animals = dfff11.loc[dfff11['District'] == inc,'Description'].values
         #msg = response.message(str(animals[0])) 
@@ -206,7 +206,7 @@ def reply_whatsapp():
           output = requests.get(url = "https://1atqmr.deta.dev/get_products/")
           df = pd.DataFrame(output.json()['_items'])
           products = df.loc[df['Shop'] == inc]
-          msg = response.message("---------------{0}---------------- \n ".format(inc) + str(shop_descr.values[0]) + "\n ---------------------------- \n " + str(products[["Product","Price"]]) + " \n ------------------------------------")
+          msg = response.message("-------------------{0}---------------------- \n ".format(inc) + str(shop_descr.values[0]) + "\n ----------------------------------------------- \n " + str(products[["Product","Price"]]) + " \n --------------------------------------- \n SHP -- to shops menu")
           
           
         
