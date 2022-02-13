@@ -94,6 +94,9 @@ def reply_whatsapp():
     output11 = requests.get(url = "https://1atqmr.deta.dev/all_shops/")
     dfff11 = pd.DataFrame(output11.json()['_items'])
     
+    output12 = requests.get(url = "https://1atqmr.deta.dev/get_products/")
+    dfff12 = pd.DataFrame(output12.json()['_items'])
+    
     
     if not int(num_media):
       
