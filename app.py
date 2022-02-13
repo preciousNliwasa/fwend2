@@ -71,6 +71,9 @@ def reply_whatsapp():
     output_lan = requests.get(url = 'https://lkdzzx.deta.dev/get_user_current_language/')
     dff3 = pd.DataFrame(output_lan.json()['_items'])
     
+    output_region = requests.get(url = 'https://lkdzzx.deta.dev/get_shop_region/')
+    dffregion = pd.DataFrame(output_region.json()['_items'])
+    
     # api to get user current operation
     output_op = requests.get(url = 'https://lkdzzx.deta.dev/get_user_current_operation/')
     dff4 = pd.DataFrame(output_op.json()['_items'])
@@ -181,13 +184,15 @@ def reply_whatsapp():
         
         elif (('nrt' in inc) | ('centr' in inc) | ('sth' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           
+          
+          
           # updating to english if language was in chichewa
-          if np.any(dff3.user_number.values == phone_number):
-             requests.put(url = 'https://lkdzzx.deta.dev/update_language/',params = {'key':dff3.loc[dff3['user_number'] == phone_number,'key'].values[0],'user_number':phone_number,'lan' : 'english'})  
+          if np.any(dffregion.user_number.values == phone_number):
+             requests.put(url = 'https://lkdzzx.deta.dev/update_region/',params = {'key':dffregion.loc[dffregion['user_number'] == phone_number,'key'].values[0],'user_number':phone_number,'region' : region})  
               
           else:
             # registering a new number in english
-            requests.post(url = 'https://lkdzzx.deta.dev/language_change/',params = {'user_number':phone_number,'lan' : 'english'})
+            requests.post(url = 'https://lkdzzx.deta.dev/post_shops_region/',params = {'user_number':phone_number,'region' : region})
             
           output = requests.get(url = "https://1atqmr.deta.dev/all_shops/")
           dff = pd.DataFrame(output.json()['_items'])
