@@ -180,10 +180,18 @@ def reply_whatsapp():
           msg = response.message("--------------REGION-------------------- \n ------------------------------------------- \n NRT -- Northen \n CENTR -- Central \n STH -- Southern \n -------------------------------------------- \n MN -- to main menu")
         
         elif ('nrt' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
-          msg = response.message('north')
+          output = requests.get(url = "https://1atqmr.deta.dev/all_shops/")
+          dff = pd.DataFrame(output.json()['_items'])
+          df = dff.loc[dff['Region'] == 'north']
+          dist4 = pd.DataFrame({'District':df.District.value_counts().index.values})
+          msg = response.message("----------DISTRICT MENU------------ \n --------------------------------------------\n" + str(dist4) + "\n " + "---------------------------------------- \n REG -- to region menu")
           
         elif ('centr' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
-          msg = response.message('central')
+          output = requests.get(url = "https://1atqmr.deta.dev/all_shops/")
+          dff = pd.DataFrame(output.json()['_items'])
+          df = dff.loc[dff['Region'] == 'central']
+          dist4 = pd.DataFrame({'District':df.District.value_counts().index.values})
+          msg = response.message("----------DISTRICT MENU------------ \n --------------------------------------------\n" + str(dist4) + "\n " + "---------------------------------------- \n REG -- to region menu")
          
         elif (('sth' in inc) | ('som' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           output = requests.get(url = "https://1atqmr.deta.dev/all_shops/")
