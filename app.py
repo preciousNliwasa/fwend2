@@ -108,7 +108,7 @@ def reply_whatsapp():
           msg = response.message("----------------LANGUAGE-------------------- \n Use Codes given to choose an option \n ---------------------------------------------------- \n ENG -- english \n CHW -- chichewa \n VN -- audio \n ------------------------------------------------------")
         
         # chichewa (language change)
-        elif ('langc' in inc):
+        elif 'langc' in inc:
            msg = response.message("---------------CHIYANKHULO------------------ \n gwiritsani maletala akumazele kuti musankhe \n ---------------------------------------------------- \n ENG -- english \n CHW -- chichewa \n VN -- audio \n --------------------------------------------------------")
         
         # changing to english
