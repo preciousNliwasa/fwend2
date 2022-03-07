@@ -223,7 +223,7 @@ def reply_whatsapp():
           
         
         elif ('gopr' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
-          msg = response.message('-----------MAIN MENU----------  \n ------------------------------------------------ \n Welcome to FarmConnect private network.Content is farmConnect users generated  \n  ------------------------------------------------- \n SCH -- enter schools \n MARKT -- enter market \n GROP -- enter groups ')
+          msg = response.message('-----------MAIN MENU----------  \n ------------------------------------------------ \n Welcome to FarmConnect private network.Content is farmConnect users generated  \n  ------------------------------------------------- \n SCH -- enter schools \n MARKT -- enter market \n GOPS -- enter groups ')
           
         # changing to chichewa
         elif ('chw' in inc) | ('njr' in inc):
