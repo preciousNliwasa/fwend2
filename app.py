@@ -13,19 +13,6 @@ app = Flask(__name__)
 def home():
   return ('hello')
 
-## this function cant work , some variables were removed
-@app.route('/chat',methods = ['POST'])
-def chat():
-  inc = request.values.get('Body','').lower()
-  resp = MessagingResponse()
-  mess = resp.message()
-  
-  answ = chatbot.get_response(inc)
-  mess.body(str(answ))
-  
-  return str(resp)
-
-
 bird = "https://49t059.deta.dev/stream/birdtensor.jpg"
 zuki = "https://49t059.deta.dev/stream/zuki.jpg"
 gh = "https://49t059.deta.dev/stream/gh.jpg"
@@ -229,7 +216,7 @@ def reply_whatsapp():
         # using private network (prototype) 
         
         elif (('gopr' in inc) | ('mpn' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
-          msg = response.message('-----------MAIN MENU----------  \n ------------------------------------------------ \n Welcome to FarmConnect private network.Content is farmConnect users generated  \n  ------------------------------------------------- \n SCOH -- enter schools \n MARKT -- enter market \n GOPS -- enter groups \n ------------------------------------ \n CHL -- change channel')
+          msg = response.message("-----------MAIN MENU----------  \n ------------------------------------------------ \n Welcome to FarmConnect private network.Content is farmConnect users generated  \n  ------------------------------------------------- \n SCOH -- enter schools \n MARKT -- enter market \n GOPS -- enter groups \n ------------------------------------ \n CHL -- change channel")
          
         #elif ('scoh' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
         #  output = requests.get(url = "https://qne10u.deta.dev/get_schools/")
