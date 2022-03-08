@@ -98,7 +98,7 @@ def reply_whatsapp():
       
         # intro ,default language = eng,
         if ('hello' in inc) | ('hi' in inc) | ('lange' in inc) :
-          msg = response.message("----------------LANGUAGE-------------------- \n Use Codes given to choose an option \n ---------------------------------------------------- \n ENG -- english \n CHW -- chichewa \n VN -- audio \n ------------------------------------------------------")
+          msg = response.message("----------------LANGUAGE-------------------- \n Use Codes given to choose an option \n --------------------------------------------------- \n ENG -- english \n CHW -- chichewa \n VN -- audio \n ------------------------------------------------------")
         
         # chichewa (language change)
         elif 'langc' in inc:
