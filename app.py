@@ -228,7 +228,7 @@ def reply_whatsapp():
         elif ('scoh' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
           output = requests.get(url = "https://qne10u.deta.dev/get_schools/")
           df = pd.DataFrame(output.json()['_items'])
-          msg = response.message("----------SCHOOLS MENU------------ \n -------------------------------------------- \n " + str(df[['School']]) + " \n ------------------------------------------------ \n MPN -- to main menu")
+          msg = response.message("----------SCHOOLS MENU------------ \n --------------------------------------------- \n " + str(df[['School']]) + " \n ------------------------------------------------ \n MPN -- to main menu")
         
         # changing to chichewa
         elif ('chw' in inc) | ('njr' in inc):
