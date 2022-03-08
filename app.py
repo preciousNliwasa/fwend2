@@ -100,6 +100,12 @@ def reply_whatsapp():
     output12 = requests.get(url = "https://1atqmr.deta.dev/get_products/")
     dfff12 = pd.DataFrame(output12.json()['_items'])
     
+    outputscho = requests.get(url = "https://qne10u.deta.dev/get_schools")
+    dfffscho = pd.DataFrame(outputscho.json()['_items'])
+    
+    outputtopic= requests.get(url = "https://qne10u.deta.dev/get_topics")
+    dffftopic = pd.DataFrame(outputtopic.json()['_items'])
+    
     
     if not int(num_media):
       
@@ -229,6 +235,14 @@ def reply_whatsapp():
           output = requests.get(url = "https://qne10u.deta.dev/get_schools/")
           df = pd.DataFrame(output.json()['_items'])
           msg = response.message("----------SCHOOLS MENU------------ \n --------------------------------------------- \n " + str(df[['School']]) + " \n ------------------------------------------------ \n MPN -- to main menu")
+        
+        elif (np.any(dfffscho.School.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
+          school_descr = dffscho.loc[dfff11['School'] == inc,'Description']
+          school_contact = dffscho.loc[dfff11['School'] == inc,'Contact']
+          output = requests.get(url = "https://qne10u.deta.dev/get_topics")
+          df = pd.DataFrame(output.json()['_items'])
+          topics = df.loc[df['School'] == inc]
+          msg = response.message("-------------------{0}---------------------- \n ".format(inc) +  str(school_contact.values[0]) + '\n' + str(school_descr.values[0]) + "\n ----------------------------------------------- \n " + str(topics[["Topic","Description"]]) + " \n ---------------------------------------")
         
         # changing to chichewa
         elif ('chw' in inc) | ('njr' in inc):
