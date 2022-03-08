@@ -237,8 +237,8 @@ def reply_whatsapp():
           msg = response.message("----------SCHOOLS MENU------------ \n --------------------------------------------- \n " + str(df[['School']]) + " \n ------------------------------------------------ \n MPN -- to main menu")
         
         elif (np.any(dfffscho.School.values == inc) == True) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
-          school_descr = dffscho.loc[dfff11['School'] == inc,'Description']
-          school_contact = dffscho.loc[dfff11['School'] == inc,'Contact']
+          school_descr = dfffscho.loc[dfffscho['School'] == inc,'Description']
+          school_contact = dfffscho.loc[dfffscho['School'] == inc,'Contact']
           output = requests.get(url = "https://qne10u.deta.dev/get_topics")
           df = pd.DataFrame(output.json()['_items'])
           topics = df.loc[df['School'] == inc]
