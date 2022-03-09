@@ -87,12 +87,6 @@ def reply_whatsapp():
     output12 = requests.get(url = "https://1atqmr.deta.dev/get_products/")
     dfff12 = pd.DataFrame(output12.json()['_items'])
     
-    outputscho = requests.get(url = "https://qne10u.deta.dev/get_schools")
-    dfffscho = pd.DataFrame(outputscho.json()['_items'])
-    
-    outputtopic= requests.get(url = "https://qne10u.deta.dev/get_topics")
-    dffftopic = pd.DataFrame(outputtopic.json()['_items'])
-    
     
     if not int(num_media):
       
@@ -212,11 +206,7 @@ def reply_whatsapp():
           df = pd.DataFrame(output.json()['_items'])
           products = df.loc[df['Shop'] == inc]
           msg = response.message("-------------------{0}---------------------- \n ".format(inc) + str(shop_descr.values[0]) + "\n ----------------------------------------------- \n " + str(products[["Product","Price"]]) + " \n ---------------------------------------")
-          
-        # using private network (prototype) 
         
-        elif (('gopr' in inc) | ('mpn' in inc)) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
-          msg = response.message("-----------MAIN MENU------------  \n ------------------------------------------------ \n Welcome to FarmConnect private network.Content is farmConnect users generated  \n  ------------------------------------------------- \n SCOH -- enter schools \n MARKT -- enter market \n GOPS -- enter groups \n ------------------------------------ \n CHL -- change channel")
          
         #elif ('scoh' in inc) & (dff3.loc[dff3['user_number'] == phone_number ,'lan'].values[0] == 'english'):
         #  output = requests.get(url = "https://qne10u.deta.dev/get_schools/")
