@@ -315,7 +315,7 @@ def reply_whatsapp():
             msg.media(file_url)
             
         else:
-            msg = response.message('we dont understand what you have given br0o')
+            msg = response.message('we dont understand what you have gkiven br0o')
           
     return str(response)
  
